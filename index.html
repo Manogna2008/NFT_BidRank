@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NFT BidRank — Smart NFT Auction Ranking System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="gemTop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e2b48d"/>
+      <stop offset="1" stop-color="#b98a63"/>
+    </linearGradient>
+  </defs>
+  <symbol id="gem" viewBox="0 0 100 90">
+    <polygon points="28,8 50,8 35,35" fill="#e8c4a3"/>
+    <polygon points="50,8 72,8 65,35" fill="#c9966e"/>
+    <polygon points="50,8 65,35 35,35" fill="#f1d6bc"/>
+    <polygon points="28,8 35,35 5,35" fill="#d9aa84"/>
+    <polygon points="72,8 95,35 65,35" fill="#a8774f"/>
+    <polygon points="5,35 35,35 50,85" fill="#b5835b"/>
+    <polygon points="35,35 65,35 50,85" fill="#c99872"/>
+    <polygon points="65,35 95,35 50,85" fill="#8f5f3c"/>
+  </symbol>
+</svg>
+<div id="auth" class="auth-overlay">
+  <form class="auth-card" id="authForm">
+    <div class="brand-gem"><svg><use href="#gem"/></svg></div>
+    <h1>NFT BidRank</h1>
+    <p>Smart NFT Auction Ranking System</p>
+    <input id="authName" placeholder="Your name" autocomplete="name">
+    <input id="authEmail" type="email" placeholder="Email address" required>
+    <input id="authPassword" type="password" placeholder="Password" required minlength="4">
+    <button class="primary full" type="submit">Login / Sign Up</button>
+    <small id="authMsg">First login creates a local demo account.</small>
+  </form>
+</div>
+
+<div class="app hidden" id="app">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-gem"><svg><use href="#gem"/></svg></div>
+      <h2>NFT BidRank</h2>
+      <p>Smart NFT Auction<br>Ranking System</p>
+    </div>
+
+    <nav id="nav">
+      <button class="nav-link active" data-page="dashboard"><span>⌂</span>Dashboard</button>
+      <button class="nav-link" data-page="explore"><span>◎</span>Explore NFTs</button>
+      <button class="nav-link" data-page="auctions"><span>♢</span>Live Auctions</button>
+      <button class="nav-link" data-page="bids"><span>◇</span>My Bids</button>
+      <button class="nav-link" data-page="collection"><span>▧</span>My Collection</button>
+      <button class="nav-link" data-page="analytics"><span>▥</span>Analytics</button>
+      <button class="nav-link" data-page="rankings"><span>♛</span>NFT Rankings</button>
+      <button class="nav-link" data-page="settings"><span>⚙</span>Settings</button>
+      <button class="nav-link" id="logout"><span>⇥</span>Logout</button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="pedestal"><svg><use href="#gem"/></svg></div>
+      <em>Bid Smart.<br>Own More. ♡</em>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+      <div class="searchbox">
+        <span>⌕</span>
+        <input id="search" placeholder="Search NFTs, creators...">
+      </div>
+
+      <div class="top-actions">
+        <button class="bell" title="Notifications">♧<i></i></button>
+        <div class="user-avatar">♟</div>
+        <strong id="welcome">ARMY_Queen</strong>
+        <span>⌄</span>
+      </div>
+    </header>
+
+    <section id="dashboard" class="page">
+
+      <div class="hero">
+        <div class="hero-content">
+          <h1>NFT BidRank</h1>
+          <h3><span></span> Discover&nbsp; • &nbsp;Bid&nbsp; • &nbsp;Own <span></span></h3>
+          <p>The ultimate NFT auction platform<br>for collectors and creators.</p>
+          <button class="primary" data-go="explore">
+            Explore Now&nbsp; →
+          </button>
+        </div>
+
+        <div class="spark s1">✦</div>
+        <div class="spark s2">✧</div>
+        <div class="spark s3">✦</div>
+        <div class="spark s4">✧</div>
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+      </div>
+
+      <div class="stats">
+
+        <article class="stat">
+          <div class="stat-icon">♢</div>
+          <div>
+            <h2 id="totalBids">12,450</h2>
+            <p>Total Bids</p>
+          </div>
+          <small>↑ 12%</small>
+        </article>
+
+        <article class="stat">
+          <div class="stat-icon">♟</div>
+          <div>
+            <h2 id="activeUsers">8,920</h2>
+            <p>Active Users</p>
+          </div>
+          <small>↑ 8%</small>
+        </article>
+
+        <article class="stat">
+          <div class="stat-icon">◆</div>
+          <div>
+            <h2 id="totalNFTs">4,230</h2>
+            <p>NFTs Listed</p>
+          </div>
+          <small>↑ 15%</small>
+        </article>
+
+        <article class="stat">
+          <div class="stat-icon">▣</div>
+          <div>
+            <h2 id="volume">₹ 24.8L</h2>
+            <p>Total Volume</p>
+          </div>
+          <small>↑ 20%</small>
+        </article>
+
+      </div>
+
+      <div class="dashboard-grid">
+
+        <div class="left-column">
+
+          <section class="panel top-panel">
+            <div class="panel-heading">
+              <h2><span>♛</span> Top Bidding NFTs</h2>
+              <button class="text-button" data-go="rankings">View All →</button>
+            </div>
+            <div id="topNFTs" class="nft-grid"></div>
+          </section>
+
+          <section class="panel analytics-panel">
+            <div class="panel-heading">
+              <h2><span>▥</span> Auction Analytics</h2>
+              <select id="chartRange">
+                <option>Last 7 Days</option>
+                <option>Last 30 Days</option>
+              </select>
+            </div>
+            <div id="mainChart" class="line-chart"></div>
+          </section>
+
+        </div>
+
+        <div class="right-column">
+
+          <section class="panel live-panel">
+            <div class="panel-heading">
+              <h2><span>⌁</span> Live Auction <b class="red-dot"></b></h2>
+              <button class="text-button" data-go="auctions">View All →</button>
+            </div>
+            <div id="liveList" class="activity-list"></div>
+          </section>
+
+          <section class="panel recent-panel">
+            <div class="panel-heading">
+              <h2><span>◷</span> Recent Activity</h2>
+              <button class="text-button" data-go="bids">View All →</button>
+            </div>
+            <div id="recentList" class="activity-list"></div>
+          </section>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="otherPage" class="page hidden">
+      <div class="page-title-row">
+        <h1 id="pageTitle">Explore NFTs</h1>
+      </div>
+      <div id="pageContent"></div>
+    </section>
+
+  </main>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

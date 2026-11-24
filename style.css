@@ -1,0 +1,938 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+:root {
+  --bg: #fbf1e8;
+  --sidebar: #f8e9dc;
+  --panel: #fff9f3;
+  --brown: #89583b;
+  --brown-dark: #563522;
+  --text: #38271d;
+  --muted: #8d7563;
+  --line: #ead9ca;
+  --green: #39835e;
+  --shadow: 0 4px 18px rgba(91,58,35,.055);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', Arial, sans-serif;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: 205px;
+  flex: 0 0 205px;
+  background: var(--sidebar);
+  border-right: 1px solid #efdfd1;
+  padding: 18px 10px 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  text-align: center;
+  height: 118px;
+}
+
+.brand-gem {
+  font-size: 48px;
+  line-height: 1;
+  color: #bd8d68;
+  text-shadow: 0 3px 0 #a97651;
+}
+
+.brand h2 {
+  font: 700 22px 'Playfair Display', Georgia, serif;
+  margin: 3px 0 2px;
+}
+
+.brand p {
+  font: italic 12px 'Playfair Display', Georgia, serif;
+  color: #806954;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.sidebar nav {
+  display: grid;
+  gap: 4px;
+  margin-top: 5px;
+}
+
+.nav-link {
+  height: 41px;
+  border-radius: 24px;
+  background: transparent;
+  color: #604a3a;
+  text-align: left;
+  padding: 0 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.nav-link span {
+  width: 18px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--brown);
+  color: #fff;
+  box-shadow: 0 4px 9px #71472d2a;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  text-align: center;
+  font: italic 18px 'Playfair Display', Georgia, serif;
+  line-height: 1.25;
+  padding-bottom: 4px;
+}
+
+.pedestal {
+  height: 83px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.pedestal:before {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  width: 96px;
+  height: 21px;
+  border-radius: 50%;
+  background: #986d4d;
+  box-shadow: inset 0 -5px 0 #765036;
+}
+
+.pedestal span {
+  font-size: 65px;
+  color: #c49a76;
+  position: relative;
+  z-index: 1;
+  text-shadow: 2px 3px #a87955;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 20px 22px;
+}
+
+.topbar {
+  height: 39px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.searchbox {
+  height: 39px;
+  width: min(455px, 55%);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #fff9f3;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 10px;
+  color: #775d49;
+}
+
+.searchbox span {
+  font-size: 22px;
+}
+
+.searchbox input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  width: 100%;
+  color: var(--text);
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.bell {
+  position: relative;
+  width: 39px;
+  height: 39px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff9f3;
+  font-size: 20px;
+  color: var(--brown);
+}
+
+.bell i {
+  position: absolute;
+  right: 9px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: #d75a4e;
+  border-radius: 50%;
+}
+
+.user-avatar {
+  height: 39px;
+  width: 39px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #d9b99e;
+  color: #70472f;
+  font-size: 23px;
+}
+
+.hero {
+  height: 184px;
+  border-radius: 21px;
+  background: linear-gradient(
+    110deg,
+    #f6dfca 0%,
+    #f1d0b2 55%,
+    #e7c09f 100%
+  );
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 14px 30px;
+}
+
+.hero h1 {
+  font: 800 43px 'Playfair Display', Georgia, serif;
+  letter-spacing: .2px;
+  margin: 0;
+}
+
+.hero h3 {
+  font: 700 17px 'DM Sans', sans-serif;
+  margin: 0 0 6px;
+}
+
+.hero h3 span {
+  display: inline-block;
+  width: 40px;
+  border-top: 1.5px solid #533b2a;
+  vertical-align: middle;
+  margin: 0 7px;
+}
+
+.hero p {
+  font-size: 14px;
+  line-height: 1.35;
+  margin: 0 0 9px;
+}
+
+.primary {
+  background: var(--brown);
+  color: white;
+  border-radius: 25px;
+  padding: 9px 22px;
+  font-weight: 700;
+  box-shadow: 0 3px 8px #6b43252a;
+}
+
+.primary:hover {
+  background: var(--brown-dark);
+}
+
+.spark {
+  position: absolute;
+  color: #fff9f1;
+  font-size: 30px;
+  z-index: 2;
+}
+
+.s1 {
+  right: 18%;
+  top: 28px;
+  font-size: 36px;
+}
+
+.s2 {
+  right: 33%;
+  top: 65px;
+}
+
+.s3 {
+  right: 4%;
+  top: 80px;
+  font-size: 29px;
+}
+
+.s4 {
+  right: 12%;
+  bottom: 10px;
+  font-size: 27px;
+}
+
+.wave {
+  position: absolute;
+  right: -2%;
+  bottom: -30px;
+  width: 75%;
+  height: 100px;
+  border-radius: 50% 45% 0 0;
+  transform: rotate(-3deg);
+}
+
+.wave1 {
+  background: #e5bd9d;
+  opacity: .75;
+  bottom: -42px;
+}
+
+.wave2 {
+  background: #d6a984;
+  opacity: .65;
+  bottom: -63px;
+  right: -5%;
+  transform: rotate(4deg);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.stat {
+  height: 66px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+
+.stat-icon {
+  font-size: 29px;
+  color: var(--brown);
+  width: 43px;
+  text-align: center;
+}
+
+.stat h2 {
+  font-size: 20px;
+  margin: 0 0 1px;
+  font-weight: 700;
+}
+
+.stat p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.stat small {
+  margin-left: auto;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
+  gap: 13px;
+}
+
+.left-column,
+.right-column {
+  min-width: 0;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 13px 14px;
+  margin-bottom: 13px;
+  box-shadow: var(--shadow);
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.panel-heading h2 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.panel-heading h2 span {
+  color: var(--brown);
+  font-size: 19px;
+  margin-right: 5px;
+}
+
+.text-button {
+  background: transparent;
+  color: #503b2b;
+  font-size: 11px;
+  padding: 4px;
+  white-space: nowrap;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.nft-card {
+  border: 1px solid #ead8c7;
+  background: #fffaf5;
+  border-radius: 14px;
+  padding: 10px;
+  min-width: 0;
+}
+
+.nft-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0e0d0;
+  color: #6b4b34;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+}
+
+.pill.live {
+  background: #e2f0e6;
+  color: #377c58;
+}
+
+.heart {
+  border-radius: 50%;
+  background: #f1dfcf;
+  color: #8c6043;
+  width: 25px;
+  height: 25px;
+}
+
+.nft-art {
+  height: 64px;
+  border-radius: 10px;
+  background: linear-gradient(140deg, #f2e0d0, #ead2bd);
+  display: grid;
+  place-items: center;
+  font-size: 38px;
+  margin-bottom: 8px;
+}
+
+.nft-card h3 {
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 5px;
+}
+
+.nft-price {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.nft-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #806b5b;
+  font-size: 10px;
+  margin: 4px 0 7px;
+}
+
+.nft-card .primary {
+  width: 100%;
+  padding: 7px 5px;
+  font-size: 11px;
+}
+
+.analytics-panel {
+  min-height: 205px;
+}
+
+.analytics-panel select {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fffaf5;
+  padding: 7px;
+  font-size: 10px;
+  color: #634a37;
+}
+
+.line-chart {
+  height: 145px;
+  width: 100%;
+  position: relative;
+}
+
+.line-chart svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.activity-list .activity-row {
+  padding: 9px 0;
+  border-bottom: 1px solid #eee0d4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.activity-row:last-child {
+  border-bottom: 0;
+}
+
+.activity-row strong {
+  font-size: 11px;
+  font-weight: 600;
+  display: block;
+}
+
+.activity-row small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+.activity-right {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.activity-right b {
+  font-size: 10px;
+  background: #f0dfce;
+  border-radius: 15px;
+  padding: 4px 8px;
+}
+
+.activity-right small {
+  font-size: 9px;
+}
+
+.red-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d64f43;
+  vertical-align: middle;
+}
+
+.page-title-row h1 {
+  font: 700 30px 'Playfair Display', Georgia, serif;
+  margin: 12px 0 16px;
+}
+
+.page-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  padding: 17px;
+  margin-bottom: 14px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.field {
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fffaf5;
+  color: var(--text);
+}
+
+.field:focus {
+  outline: 2px solid #d7b99f;
+}
+
+.secondary {
+  background: #efdfd1;
+  color: #6e4c34;
+  border-radius: 20px;
+  padding: 8px 13px;
+}
+
+.danger {
+  background: #a94f43;
+  color: white;
+  border-radius: 18px;
+  padding: 7px 11px;
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 550px;
+}
+
+th, td {
+  text-align: left;
+  padding: 11px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+
+th {
+  background: #f4e7dc;
+  color: #745a46;
+}
+
+.empty {
+  padding: 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric {
+  padding: 17px;
+  background: #fffaf5;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.metric strong {
+  font-size: 23px;
+  color: var(--brown);
+}
+
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #523825;
+  color: white;
+  padding: 12px 17px;
+  border-radius: 12px;
+  z-index: 20;
+  box-shadow: var(--shadow);
+}
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: #f8e9dc;
+  display: grid;
+  place-items: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.auth-card {
+  background: #fff9f3;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 28px;
+  width: min(370px, 100%);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.auth-card h1 {
+  font: 700 28px 'Playfair Display', Georgia, serif;
+}
+
+.auth-card p {
+  color: var(--muted);
+  margin: 5px 0 17px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin: 5px 0;
+  background: #fffdf9;
+}
+
+.auth-card .full {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.auth-card small {
+  color: var(--muted);
+}
+
+/* Tablet */
+@media(max-width:1050px) {
+  .sidebar {
+    width: 185px;
+    flex-basis: 185px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .right-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media(max-width:700px) {
+  .app {
+    display: block;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .brand {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-bottom: 8px;
+  }
+
+  .brand-gem {
+    font-size: 30px;
+  }
+
+  .brand h2 {
+    font-size: 17px;
+  }
+
+  .brand p,
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .sidebar nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+  }
+
+  .nav-link {
+    flex: 0 0 auto;
+    height: 35px;
+    padding: 0 11px;
+    font-size: 11px;
+  }
+
+  .main {
+    padding: 10px;
+  }
+
+  .hero {
+    height: 175px;
+  }
+
+  .hero-content {
+    padding: 15px;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .stats {
+    gap: 7px;
+  }
+
+  .stat {
+    padding: 8px;
+    height: 62px;
+    gap: 6px;
+  }
+
+  .stat-icon {
+    font-size: 22px;
+    width: 28px;
+  }
+
+  .stat h2 {
+    font-size: 16px;
+  }
+
+  .stat p {
+    font-size: 10px;
+  }
+
+  .stat small {
+    display: none;
+  }
+
+  .nft-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .right-column {
+    display: block;
+  }
+
+  .topbar {
+    margin-bottom: 10px;
+  }
+
+  .searchbox {
+    width: 60%;
+  }
+
+  .top-actions strong {
+    display: none;
+  }
+
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .sidebar,
+  .topbar,
+  .toolbar,
+  .primary,
+  .text-button {
+    display: none !important;
+  }
+
+  .main {
+    padding: 0;
+  }
+
+  .page {
+    display: block !important;
+  }
+}
+/* NFT MANAGEMENT CONTROLS */
+
+.nft-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.nft-controls button {
+    flex: 1;
+    padding: 9px;
+    font-size: 12px;
+}
+
+.nft-card .ended {
+    background: #f2ded8;
+    color: #96513f;
+}
+
+.nft-card button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+.brand-gem svg {
+  width: 56px;
+  height: 50px;
+  filter: drop-shadow(0 3px 2px rgba(120,80,50,.25));
+}
+
+.pedestal svg {
+  width: 78px;
+  height: 70px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 700px) {
+  .brand-gem svg { width: 34px; height: 30px; }
+}
